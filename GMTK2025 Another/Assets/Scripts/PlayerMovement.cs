@@ -7,6 +7,7 @@
 */
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -62,36 +63,36 @@ public class PlayerMovement : MonoBehaviour
     //If none of those 2 are true, respond to the player's input
     void Update()
     {
-        if(isDashing)
+        if (isDashing)
         {
             rb.velocity = currentDashVector;
 
             currentDashTime += Time.deltaTime;
 
-            if(currentDashTime >= dashingTime)
+            if (currentDashTime >= dashingTime)
             {
                 EndDash();
             }
         }
         else
         {
-            
-            if(Input.GetKeyDown(KeyCode.Space) && canDash && airDahses < airDashAmount && currentDashCooldown <= 0)
+
+            if (Input.GetKeyDown(KeyCode.Space) && canDash && airDahses < airDashAmount && currentDashCooldown <= 0)
             {
                 InitiateDash();
             }
 
-            if(Input.GetKeyDown(KeyCode.W) && (IsGrounded() || canAirJump && (airJumps < airJumpAmount)))
+            if (Input.GetKeyDown(KeyCode.W) && (IsGrounded() || canAirJump && (airJumps < airJumpAmount)))
             {
                 Jump();
             }
-            else if(IsGrounded())
+            else if (IsGrounded())
             {
                 airJumps = 0;
                 airDahses = 0;
             }
 
-            if(canGlide && !IsGrounded() && Input.GetKey(KeyCode.W) && rb.velocity.y <= glidingSpeed)
+            if (canGlide && !IsGrounded() && Input.GetKey(KeyCode.W) && rb.velocity.y <= glidingSpeed)
             {
                 rb.velocity = new Vector2(rb.velocity.x, glidingSpeed);
                 rb.gravityScale = 0;
@@ -106,10 +107,10 @@ public class PlayerMovement : MonoBehaviour
             isHorizontalKeyPressed = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A);
 
             horizontalInput = InputResponsivityFunction(horizontalInput, isHorizontalKeyPressed);
-            
-            if(horizontalInput != 0)
+
+            if (horizontalInput != 0)
             {
-                if(horizontalInput > 0)
+                if (horizontalInput > 0)
                 {
                     facingRight = true;
                 }
@@ -121,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
 
-            if(currentDashCooldown > 0)
+            if (currentDashCooldown > 0)
             {
                 currentDashCooldown -= Time.deltaTime;
             }
@@ -131,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
     //This function takes a number between -1 and 1 and return a number between -1 and 1
     private float InputResponsivityFunction(float inputValue, bool isHorizontalKeyPressed)
     {
-        return Mathf.Sign(inputValue) * Mathf.Pow(Mathf.Abs(inputValue), (isHorizontalKeyPressed ? 1f/3f : 3f));
+        return Mathf.Sign(inputValue) * Mathf.Pow(Mathf.Abs(inputValue), (isHorizontalKeyPressed ? 1f / 3f : 3f));
     }
     private bool IsGrounded()
     {
@@ -140,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Jump()
     {
-        if(!IsGrounded())
+        if (!IsGrounded())
         {
             airJumps++;
             rb.velocity = new Vector2(rb.velocity.x, airJumpForce);
@@ -175,5 +176,17 @@ public class PlayerMovement : MonoBehaviour
         currentDashCooldown = dahsingCooldown;
         airDahses++;
         isDashing = false;
+    }
+
+    public void SetAbilities(bool[] unlocks)
+    {
+        if (unlocks.Length < 3)
+        {
+            return;
+        }
+
+        this.canAirJump = unlocks[0];
+        this.canGlide = unlocks[1];
+        this.canDash = unlocks[2];
     }
 }
