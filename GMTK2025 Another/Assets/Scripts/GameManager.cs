@@ -75,4 +75,9 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Level complete!");
     }
+
+    public void MarkPlayerAsDead()
+    {
+        SpawnPlayer();
+    }
 }

@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb504dd59a6b2e349b5b1e57a8db357a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 13
+  speed: 10
   groundJumpForce: 15
   defaultGravityScale: 5
   groundLayer:
@@ -156,9 +156,9 @@ MonoBehaviour:
   airJumpAmount: 1
   airJumpForce: 12
   canGlide: 1
-  glidingSpeed: -2
+  glidingSpeed: -2.5
   canDash: 1
-  dashingSpeed: 35
+  dashingSpeed: 30
   dashingTime: 0.2
   dahsingCooldown: 0.5
   airDashAmount: 1
