@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3611735570077594235}
   - component: {fileID: 3611735570077594238}
   - component: {fileID: 3611735570077594239}
+  - component: {fileID: 5024131900796318823}
   m_Layer: 6
   m_Name: TraversablePlatform
   m_TagString: Untagged
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 6.79, y: 10}
+  m_Size: {x: 10, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -105,13 +106,13 @@ BoxCollider2D:
     border: {x: 2.03, y: 4.83, z: 2.06, w: 4.8399997}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 10, y: 10}
-    newSize: {x: 6.79, y: 10}
+    newSize: {x: 10, y: 10}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.8304653, y: 0.28410375}
+  m_Size: {x: 6.1, y: 0.27}
   m_EdgeRadius: 0
 --- !u!251 &3611735570077594238
 PlatformEffector2D:
@@ -147,3 +148,16 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &5024131900796318823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3611735570077594234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49026b79d4c814348a67397e43b91094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  margins: {x: 3.9, y: 9.73}
