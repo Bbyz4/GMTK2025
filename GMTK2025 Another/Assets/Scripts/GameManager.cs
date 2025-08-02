@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -74,6 +75,10 @@ public class GameManager : MonoBehaviour
     public void CompleteLevel()
     {
         Debug.Log("Level complete!");
+
+        int currentLevelID = SceneManager.GetActiveScene().buildIndex - 1;
+
+        PlayerPrefs.SetInt("UnlockedLevels", Mathf.Max(currentLevelID + 1, PlayerPrefs.GetInt("UnlockedLevels", 1)));
     }
 
     public void MarkPlayerAsDead()
