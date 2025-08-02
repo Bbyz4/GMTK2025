@@ -7,6 +7,28 @@ public class SwitchBehaviour : MonoBehaviour
     [SerializeField] private int toggledGroupID;
     [SerializeField] private bool setActive;
 
+    [SerializeField] private List<Sprite> visualSprites;
+
+    private SpriteRenderer sr;
+
+    void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+
+        if (visualSprites.Count >= 2)
+        {
+            sr.sprite = visualSprites[setActive ? 1 : 0];
+        }
+    }
+
+    void Start()
+    {
+        if (ColorManager.Instance.switchableBlockColors.Count > toggledGroupID)
+        {
+            sr.color = ColorManager.Instance.switchableBlockColors[toggledGroupID];
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
