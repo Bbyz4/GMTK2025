@@ -22,6 +22,14 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        GameObject playerOnScene = GameObject.FindGameObjectWithTag("Player");
+
+        if (playerOnScene != null)
+        {
+            playerStartPosition = playerOnScene.transform.position;
+            Destroy(playerOnScene);
+        }
+
         if (Instance != null)
         {
             Debug.LogError("More that 1 GameManager instance!");
