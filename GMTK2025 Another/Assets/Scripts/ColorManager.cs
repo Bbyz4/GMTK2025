@@ -9,6 +9,8 @@ public class ColorManager : MonoBehaviour
 
     public List<Color> switchableBlockColors;
 
+    public Color spikeColor;
+
     void Awake()
     {
         if (Instance != null)
