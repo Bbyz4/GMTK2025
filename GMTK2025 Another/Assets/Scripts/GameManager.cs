@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,7 +18,9 @@ public class GameManager : MonoBehaviour
     //0 - double jump, 1 - glide, 2 - dash
     private bool[] unlockedAbilities = new bool[3];
 
-    private void Awake()
+    private bool inSceneTransition;
+
+    void Awake()
     {
         if (Instance != null)
         {
@@ -30,6 +33,8 @@ public class GameManager : MonoBehaviour
         {
             unlockedAbilities[i] = false;
         }
+
+        inSceneTransition = false;
 
         SpawnPlayer();
     }
@@ -64,6 +69,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (inSceneTransition)
+        {
+            return;
+        }
+
         playerRespawnCounter -= Time.deltaTime;
 
         if (playerRespawnCounter <= 0f)
@@ -74,15 +84,30 @@ public class GameManager : MonoBehaviour
 
     public void CompleteLevel()
     {
-        Debug.Log("Level complete!");
-
         int currentLevelID = SceneManager.GetActiveScene().buildIndex - 1;
 
         PlayerPrefs.SetInt("UnlockedLevels", Mathf.Max(currentLevelID + 1, PlayerPrefs.GetInt("UnlockedLevels", 1)));
+
+        StartCoroutine(NextLevelCoroutine());
     }
 
     public void MarkPlayerAsDead()
     {
         SpawnPlayer();
+    }
+
+    private IEnumerator NextLevelCoroutine()
+    {
+        inSceneTransition = true;
+
+        if (player != null)
+        {
+            Destroy(player);
+        }
+        yield return new WaitForSeconds(1f);
+
+        int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+
+        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings > nextScene ? nextScene : 1);
     }
 }
