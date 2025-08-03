@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7891457357536155834}
   - component: {fileID: 7891457357536155838}
   - component: {fileID: 6749105962141634486}
+  - component: {fileID: -3913400420788958306}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -177,3 +178,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba7c3dd08230acc4cb641761d3289faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3913400420788958306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7891457357536155835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e5227e457ebf046b51e41b3997d754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathParticlesPrefab: {fileID: 2839687750908327836, guid: f88d1e9d4543a9c45ac63ca6c115fe5e, type: 3}

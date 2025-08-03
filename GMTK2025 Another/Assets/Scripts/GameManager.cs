@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -61,6 +62,8 @@ public class GameManager : MonoBehaviour
     {
         if (player != null)
         {
+            player.GetComponent<PlayerParticleManager>().PlayDeathParticles();
+
             Destroy(player);
         }
 
@@ -112,7 +115,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(player);
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ExitBehaviour : MonoBehaviour
@@ -8,7 +9,7 @@ public class ExitBehaviour : MonoBehaviour
 
     void Awake()
     {
-        isExitAllowed = false;   
+        isExitAllowed = false;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -31,6 +32,7 @@ public class ExitBehaviour : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S) && isExitAllowed)
         {
+            transform.GetChild(1).GetComponent<ParticleSystem>().Play();
             GameManager.Instance.CompleteLevel();
         }
     }
