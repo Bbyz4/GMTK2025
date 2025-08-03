@@ -155,7 +155,7 @@ MonoBehaviour:
     m_Bits: 64
   canAirJump: 1
   airJumpAmount: 1
-  airJumpForce: 12
+  airJumpForce: 15
   canGlide: 1
   glidingSpeed: -2.5
   canDash: 1
