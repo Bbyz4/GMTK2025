@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class MainSceneManager : MonoBehaviour
@@ -9,7 +10,13 @@ public class MainSceneManager : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            SceneManager.LoadScene(1);
+            if (!Input.GetMouseButtonDown(0) || !EventSystem.current.IsPointerOverGameObject())
+            {
+                if (!Input.GetKeyDown(KeyCode.Escape))
+                {
+                    SceneManager.LoadScene(1);
+                }
+            }
         }
     }
 }
