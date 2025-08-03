@@ -118,4 +118,9 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings > nextScene ? nextScene : 1);
     }
+
+    public float GetPlayerRespawnCounter()
+    {
+        return playerRespawnCounter;
+    }
 }
