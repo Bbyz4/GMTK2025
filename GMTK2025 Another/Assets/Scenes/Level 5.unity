@@ -350,7 +350,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'TOUCHING A SPIKE
 
-    RESTARTS THE LEVEL
+    RESPAWNS THE PLAYER
 
     IMMIDIATELY'
   m_isRightToLeft: 0
